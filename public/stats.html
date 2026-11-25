@@ -1,0 +1,67 @@
+﻿<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Thống kê · Mỗi Ngày</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <header class="top">
+      <a class="logo" href="./">◈ <span>Mỗi Ngày</span></a>
+      <nav>
+        <a href="./">Công việc</a
+        ><a class="active" href="./stats.html">Thống kê</a>
+      </nav>
+      <div class="today" id="todayLabel"></div>
+    </header>
+    <main>
+      <section class="hero stats-hero">
+        <div>
+          <span class="eyebrow">CÁI NHÌN TOÀN CẢNH</span>
+          <h1>Tiến bộ đáng được<br />ghi nhận.</h1>
+          <p>Mỗi việc bạn hoàn thành đang đưa bạn tiến về phía trước.</p>
+          <span class="data-source" id="dataSource">Số liệu minh họa</span>
+        </div>
+      </section>
+      <section class="stat-cards">
+        <article>
+          <span>Tổng công việc</span><strong id="total">—</strong
+          ><small>Trong danh sách của bạn</small>
+        </article>
+        <article>
+          <span>Hoàn thành hôm nay</span><strong id="completed">—</strong
+          ><small>Công việc của hôm nay</small>
+        </article>
+        <article>
+          <span>Tỷ lệ hoàn thành</span><strong id="rate">—</strong
+          ><small>Trên tổng số công việc</small>
+        </article>
+        <article>
+          <span>Công việc quá hạn</span><strong id="overdue">—</strong
+          ><small>Cần bạn chú ý</small>
+        </article>
+      </section>
+      <section class="charts">
+        <article class="chart-card">
+          <h2>Trạng thái công việc</h2>
+          <canvas id="statusChart"></canvas>
+        </article>
+        <article class="chart-card">
+          <h2>Công việc theo danh mục</h2>
+          <canvas id="categoryChart"></canvas>
+        </article>
+        <article class="chart-card">
+          <h2>Mức độ ưu tiên</h2>
+          <canvas id="priorityChart"></canvas>
+        </article>
+        <article class="chart-card wide">
+          <h2>Đã hoàn thành · 7 ngày gần nhất</h2>
+          <canvas id="dailyChart"></canvas>
+        </article>
+      </section>
+    </main>
+    <script src="./stats.js"></script>
+  </body>
+</html>

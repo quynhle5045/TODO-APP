@@ -1,0 +1,163 @@
+﻿<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Việc hôm nay · Mỗi Ngày</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header class="top">
+      <a class="logo" href="./">◈ <span>Mỗi Ngày</span> </a>
+      <nav>
+        <a class="active" href="./">Công việc</a>
+        <a href="./stats.html">Thống kê</a>
+      </nav>
+      <div class="today" id="todayLabel"></div>
+    </header>
+    <main>
+      <section class="hero">
+        <div>
+          <span class="eyebrow">KHÔNG GIAN LÀM VIỆC CỦA BẠN</span>
+          <h1>Một ngày tốt bắt đầu<br />từ những việc nhỏ.</h1>
+          <p>Theo dõi công việc, giữ nhịp tập trung và ăn mừng tiến bộ.</p>
+        </div>
+        <button class="btn primary" id="addTask">＋ Thêm công việc</button>
+      </section>
+      <section class="overview">
+        <div class="progress-top">
+          <div class="progress-icon">✦</div>
+          <div class="progress-copy">
+            <strong id="progressTitle">Đang tải công việc...</strong>
+            <span id="progressText">Một bước nhỏ cũng là tiến bộ.</span>
+          </div>
+          <div class="progress-track">
+            <div id="progressBar"></div>
+          </div>
+          <span id="progressPercent">0%</span>
+        </div>
+        <div class="status-summary" id="statusSummary">
+          <div class="status-metric todo-metric">
+            <span class="status-dot"> </span>
+            <span class="status-label">Cần làm</span>
+            <strong id="todoCount">0</strong>
+          </div>
+          <div class="status-metric doing-metric">
+            <span class="status-dot"> </span>
+            <span class="status-label">Đang làm</span>
+            <strong id="doingCount">0</strong>
+          </div>
+          <div class="status-metric done-metric">
+            <span class="status-dot"> </span>
+            <span class="status-label">Hoàn thành</span>
+            <strong id="doneCount">0</strong>
+          </div>
+        </div>
+      </section>
+      <section class="filters-card">
+        <div class="view-tabs">
+          <button class="tab active" data-view="today">Hôm nay</button>
+          <button class="tab" data-view="all">Tất cả công việc</button>
+        </div>
+        <div class="filter-row">
+          <label class="search"
+            >⌕ <input id="search" placeholder="Tìm theo tên hoặc mô tả..." />
+          </label>
+          <select id="statusFilter">
+            <option value="">Mọi trạng thái</option>
+            <option>Cần làm</option>
+            <option>Đang làm</option>
+            <option>Hoàn thành</option>
+          </select>
+          <select id="priorityFilter">
+            <option value="">Mọi ưu tiên</option>
+            <option>Cao</option>
+            <option>Trung bình</option>
+            <option>Thấp</option>
+          </select>
+          <select id="categoryFilter">
+            <option value="">Mọi danh mục</option>
+            <option>Công việc</option>
+            <option>Học tập</option>
+            <option>Cá nhân</option>
+            <option>Sức khỏe</option>
+          </select>
+          <input id="dateFilter" type="date" aria-label="Chọn ngày" />
+          <button id="resetFilters" class="reset">Đặt lại</button>
+        </div>
+      </section>
+      <div class="section-title">
+        <div>
+          <h2 id="listTitle">Việc hôm nay</h2>
+          <p id="listSubtitle">Những điều bạn muốn hoàn thành hôm nay</p>
+        </div>
+        <span id="taskCount"> </span>
+      </div>
+      <section id="taskList" class="task-list"></section>
+      <footer>Dữ liệu được lưu an toàn trên thiết bị của bạn · Mỗi Ngày</footer>
+    </main>
+    <dialog id="taskDialog">
+      <form id="taskForm">
+        <div class="dialog-head">
+          <div>
+            <span class="eyebrow">LẬP KẾ HOẠCH</span>
+            <h2 id="dialogTitle">Thêm công việc</h2>
+          </div>
+          <button type="button" id="closeDialog" class="close">×</button>
+        </div>
+        <input type="hidden" id="taskId" />
+        <label
+          >Tiêu đề công việc<input
+            id="title"
+            maxlength="160"
+            required
+            placeholder="Bạn muốn hoàn thành việc gì?"
+          />
+        </label>
+        <label
+          >Mô tả<textarea
+            id="description"
+            rows="3"
+            placeholder="Thêm chi tiết nếu cần..."
+          ></textarea>
+        </label>
+        <div class="form-grid">
+          <label
+            >Danh mục<select id="category">
+              <option>Công việc</option>
+              <option>Học tập</option>
+              <option>Cá nhân</option>
+              <option>Sức khỏe</option>
+            </select>
+          </label>
+          <label
+            >Mức ưu tiên<select id="priority">
+              <option>Trung bình</option>
+              <option>Cao</option>
+              <option>Thấp</option>
+            </select>
+          </label>
+          <label
+            >Trạng thái<select id="status">
+              <option>Cần làm</option>
+              <option>Đang làm</option>
+              <option>Hoàn thành</option>
+            </select>
+          </label>
+          <label
+            >Ngày đến hạn<input id="dueDate" type="date" required />
+          </label>
+          <label>Giờ bắt đầu<input id="startTime" type="time" /> </label>
+        </div>
+        <div class="dialog-actions">
+          <button type="button" id="cancelDialog" class="btn secondary">
+            Hủy
+          </button>
+          <button class="btn primary">Lưu công việc</button>
+        </div>
+      </form>
+    </dialog>
+    <div id="toast" role="status"></div>
+    <script src="./app.js"></script>
+  </body>
+</html>
